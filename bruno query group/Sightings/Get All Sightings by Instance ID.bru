@@ -1,0 +1,19 @@
+meta {
+  name: Get Sightings by Instance ID
+  type: http
+  seq: 13
+}
+
+get {
+  url: {{baseUrl}}/api/sightings?instanceId=1
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+settings {
+  encodeUrl: true
+}

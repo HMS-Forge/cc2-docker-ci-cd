@@ -1,0 +1,28 @@
+meta {
+  name: Update Instance
+  type: http
+  seq: 10
+}
+
+put {
+  url: {{baseUrl}}/api/instances/1
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "serialNumber": "ЭП20-001-upd",
+    "manufactureDate": "2013-05-01",
+    "imageUrl": "https://example.com/ep20_new.jpg",
+    "modelId": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+}

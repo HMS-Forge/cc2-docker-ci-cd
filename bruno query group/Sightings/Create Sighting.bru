@@ -1,0 +1,30 @@
+meta {
+  name: Create Sighting
+  type: http
+  seq: 15
+}
+
+post {
+  url: {{baseUrl}}/api/sightings
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "region": "Московская область",
+    "railway": "Октябрьская",
+    "sightingDate": "2025-04-22",
+    "imageUrl": "https://example.com/sighting.jpg",
+    "note": "Проезд через станцию",
+    "instanceId": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+}

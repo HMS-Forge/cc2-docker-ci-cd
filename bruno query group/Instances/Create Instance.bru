@@ -1,0 +1,28 @@
+meta {
+  name: Create Instance
+  type: http
+  seq: 9
+}
+
+post {
+  url: {{baseUrl}}/api/instances
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "serialNumber": "ЭП20-001",
+    "manufactureDate": "2013-05-01",
+    "imageUrl": "https://example.com/ep20.jpg",
+    "modelId": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+}

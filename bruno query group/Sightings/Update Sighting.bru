@@ -1,0 +1,30 @@
+meta {
+  name: Update Sighting
+  type: http
+  seq: 16
+}
+
+put {
+  url: {{baseUrl}}/api/sightings/1
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "region": "Ленинградская область",
+    "railway": "Октябрьская",
+    "sightingDate": "2025-04-23",
+    "imageUrl": "https://example.com/sighting_new.jpg",
+    "note": "Замечен на перегоне",
+    "instanceId": 1
+  }
+}
+
+settings {
+  encodeUrl: true
+}

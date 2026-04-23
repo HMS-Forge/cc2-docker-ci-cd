@@ -1,0 +1,29 @@
+meta {
+  name: Create Model
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{baseUrl}}/api/models
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "ЭП20",
+    "manufacturer": "НЭВЗ",
+    "yearOfProduction": 2012,
+    "powerKw": 8800,
+    "maxSpeedKmh": 200
+  }
+}
+
+settings {
+  encodeUrl: true
+}

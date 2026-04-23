@@ -1,0 +1,19 @@
+meta {
+  name: Get Instances by Model ID
+  type: http
+  seq: 7
+}
+
+get {
+  url: {{baseUrl}}/api/instances?modelId=1
+  body: none
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+settings {
+  encodeUrl: true
+}

@@ -1,0 +1,29 @@
+meta {
+  name: Update Model
+  type: http
+  seq: 4
+}
+
+put {
+  url: {{baseUrl}}/api/models/1
+  body: json
+  auth: inherit
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "name": "ЭП20 (updated)",
+    "manufacturer": "НЭВЗ",
+    "yearOfProduction": 2012,
+    "powerKw": 9000,
+    "maxSpeedKmh": 210
+  }
+}
+
+settings {
+  encodeUrl: true
+}

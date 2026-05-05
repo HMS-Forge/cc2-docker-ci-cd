@@ -2,6 +2,7 @@ package xyz.vanez.tracker.model;
 
 import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
+import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 class TrainModelTest {
@@ -28,8 +29,21 @@ class TrainModelTest {
 
     @Test
     void allArgsConstructor() {
-        TrainModel model = new TrainModel(2, "VL80", "NEVZ", 1979, 6520, 110, null);
+        TrainInstance instance = new TrainInstance();
+        List<TrainInstance> instances = List.of(instance);
+        TrainModel model = new TrainModel(2, "VL80", "NEVZ", 1979, 6520, 110, instances);
+        assertThat(model.getId()).isEqualTo(2);
         assertThat(model.getName()).isEqualTo("VL80");
-        assertThat(model.getManufacturer()).isEqualTo("NEVZ");
+        assertThat(model.getInstances()).hasSize(1);
+    }
+
+    @Test
+    void testEqualsAndHashCode() {
+        TrainModel m1 = new TrainModel();
+        m1.setId(1);
+        TrainModel m2 = new TrainModel();
+        m2.setId(1);
+        assertThat(m1).isEqualTo(m2);
+        assertThat(m1.hashCode()).isEqualTo(m2.hashCode());
     }
 }

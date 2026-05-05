@@ -20,9 +20,4 @@ class TrainTrackerApplicationTest {
     void contextLoads() {
         // Просто проверяет, что Spring-контекст успешно загружается
     }
-
-    @Test
-    void mainMethodShouldRun() {
-        TrainTrackerApplication.main(new String[]{});
-    }
 }

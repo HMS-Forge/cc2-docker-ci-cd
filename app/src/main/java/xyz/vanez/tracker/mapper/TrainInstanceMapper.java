@@ -1,13 +1,14 @@
 package xyz.vanez.tracker.mapper;
 
-import xyz.vanez.tracker.dto.TrainInstanceDto;
-import xyz.vanez.tracker.model.TrainInstance;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.ReportingPolicy;
 import org.mapstruct.factory.Mappers;
+import xyz.vanez.tracker.dto.TrainInstanceDto;
+import xyz.vanez.tracker.model.TrainInstance;
 
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface TrainInstanceMapper {
     TrainInstanceMapper INSTANCE = Mappers.getMapper(TrainInstanceMapper.class);
 

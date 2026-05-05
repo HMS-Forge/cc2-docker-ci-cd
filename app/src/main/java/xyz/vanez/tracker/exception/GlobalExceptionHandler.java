@@ -52,6 +52,6 @@ public class GlobalExceptionHandler {
     }
 
     // Вспомогательные классы
-    record ErrorResponse(int status, String message, LocalDateTime timestamp) {}
-    record ValidationErrorResponse(int status, String message, Map<String, String> errors, LocalDateTime timestamp) {}
+    record ErrorResponse(int status, String message, LocalDateTime timestamp) { }
+    record ValidationErrorResponse(int status, String message, Map<String, String> errors, LocalDateTime timestamp) { }
 }

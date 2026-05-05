@@ -72,4 +72,8 @@ class TrainModelMapperTest {
         assertThat(entity.getMaxSpeedKmh()).isEqualTo(150);
         assertThat(entity.getId()).isEqualTo(1); // id не должно измениться
     }
+    @Test
+    void testInstance() {
+        assertThat(TrainModelMapper.INSTANCE).isNotNull();
+    }
 }

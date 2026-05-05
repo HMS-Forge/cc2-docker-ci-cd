@@ -73,4 +73,8 @@ class TrainInstanceMapperTest {
         assertThat(entity.getModel().getId()).isEqualTo(2);
         assertThat(entity.getId()).isEqualTo(1); // id не должно измениться
     }
+    @Test
+    void testInstance() {
+        assertThat(TrainInstanceMapper.INSTANCE).isNotNull();
+    }
 }

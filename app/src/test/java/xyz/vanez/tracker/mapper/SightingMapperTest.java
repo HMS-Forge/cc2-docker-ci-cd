@@ -84,4 +84,8 @@ class SightingMapperTest {
         assertThat(entity.getInstance().getId()).isEqualTo(2);
         assertThat(entity.getId()).isEqualTo(1);
     }
+    @Test
+    void testInstance() {
+        assertThat(SightingMapper.INSTANCE).isNotNull();
+    }
 }

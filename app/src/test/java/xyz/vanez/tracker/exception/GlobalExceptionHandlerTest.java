@@ -7,6 +7,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -48,5 +49,17 @@ class GlobalExceptionHandlerTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
         assertThat(response.getBody().message()).contains("Внутренняя ошибка сервера");
         assertThat(response.getBody().message()).contains("Unexpected database error");
+    }
+    @Test
+    void errorRecords_ShouldBeCovered() {
+        var now = LocalDateTime.now();
+        GlobalExceptionHandler.ErrorResponse err = new GlobalExceptionHandler.ErrorResponse(404, "Not found", now);
+        assertThat(err.status()).isEqualTo(404);
+        assertThat(err.message()).isEqualTo("Not found");
+        assertThat(err.timestamp()).isEqualTo(now);
+
+        GlobalExceptionHandler.ValidationErrorResponse valErr = new GlobalExceptionHandler.ValidationErrorResponse(400, "Bad request", Map.of("field", "error"), now);
+        assertThat(valErr.status()).isEqualTo(400);
+        assertThat(valErr.errors()).containsKey("field");
     }
 }

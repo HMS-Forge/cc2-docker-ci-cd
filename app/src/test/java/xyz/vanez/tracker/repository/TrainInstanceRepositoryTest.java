@@ -47,4 +47,35 @@ class TrainInstanceRepositoryTest {
         assertThat(found).hasSize(1);
         assertThat(found.get(0).getSerialNumber()).isEqualTo("EP20-001");
     }
+    @Test
+    void updateInstance_ShouldUpdate() {
+        TrainModel model = new TrainModel();
+        model.setName("ModelForInstance");
+        modelRepository.save(model);
+
+        TrainInstance instance = new TrainInstance();
+        instance.setSerialNumber("INST-UPDATE");
+        instance.setModel(model);
+        TrainInstance saved = instanceRepository.save(instance);
+
+        saved.setSerialNumber("UPDATED");
+        TrainInstance updated = instanceRepository.save(saved);
+
+        assertThat(updated.getSerialNumber()).isEqualTo("UPDATED");
+    }
+
+    @Test
+    void deleteInstance_ShouldRemove() {
+        TrainModel model = new TrainModel();
+        model.setName("DelModel");
+        modelRepository.save(model);
+
+        TrainInstance instance = new TrainInstance();
+        instance.setSerialNumber("TO-DELETE");
+        instance.setModel(model);
+        TrainInstance saved = instanceRepository.save(instance);
+
+        instanceRepository.deleteById(saved.getId());
+        assertThat(instanceRepository.findById(saved.getId())).isEmpty();
+    }
 }

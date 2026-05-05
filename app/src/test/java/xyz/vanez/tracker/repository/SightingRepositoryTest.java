@@ -56,4 +56,26 @@ class SightingRepositoryTest {
         assertThat(found).hasSize(1);
         assertThat(found.get(0).getRegion()).isEqualTo("Московская обл.");
     }
+    @Test
+    void updateSighting_ShouldUpdate() {
+        TrainModel model = new TrainModel();
+        model.setName("Model");
+        modelRepository.save(model);
+
+        TrainInstance instance = new TrainInstance();
+        instance.setSerialNumber("INST");
+        instance.setModel(model);
+        instanceRepository.save(instance);
+
+        Sighting sighting = new Sighting();
+        sighting.setRegion("OldRegion");
+        sighting.setSightingDate(LocalDate.now());
+        sighting.setInstance(instance);
+        Sighting saved = sightingRepository.save(sighting);
+
+        saved.setRegion("NewRegion");
+        Sighting updated = sightingRepository.save(saved);
+
+        assertThat(updated.getRegion()).isEqualTo("NewRegion");
+    }
 }

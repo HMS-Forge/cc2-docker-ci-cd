@@ -38,13 +38,15 @@ class GlobalExceptionHandlerTest {
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.BAD_REQUEST);
         assertThat(response.getBody().status()).isEqualTo(400);
         assertThat(response.getBody().errors()).containsKey("name");
+        assertThat(response.getBody().errors().get("name")).isEqualTo("Name is required");
     }
 
     @Test
     void handleGeneric_ShouldReturn500() {
-        Exception ex = new RuntimeException("Unexpected");
+        Exception ex = new RuntimeException("Unexpected database error");
         ResponseEntity<GlobalExceptionHandler.ErrorResponse> response = handler.handleGeneric(ex);
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
         assertThat(response.getBody().message()).contains("Внутренняя ошибка сервера");
+        assertThat(response.getBody().message()).contains("Unexpected database error");
     }
 }
